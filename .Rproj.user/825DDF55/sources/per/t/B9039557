@@ -1,0 +1,26 @@
+{
+    "id": "B9039557",
+    "path": "~/Documents/Personal/website/config/_default/menus.yaml",
+    "project_path": "config/_default/menus.yaml",
+    "type": "yaml",
+    "hash": "1295535116",
+    "contents": "",
+    "dirty": false,
+    "created": 1630547760343.0,
+    "source_on_save": false,
+    "relative_order": 15,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "11,14",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1630547767,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1630547767220,
+    "read_only": false,
+    "read_only_alternatives": []
+}

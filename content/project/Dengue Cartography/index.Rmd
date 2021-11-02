@@ -1,0 +1,23 @@
+---
+date: "2021-11-02"
+external_link: ""
+image:
+  caption: Dengue Virus Serotype Cartography
+  focal_point: Smart
+summary: How are the most broadly reactive vaccines chosen?
+tags:
+- Modeling 
+- Antigenic Cartography 
+- Virus
+title: DNV COBRA Vaccine Selection
+url_code: ""
+url_pdf: ""
+url_slides: ""
+url_video: ""
+---
+
+```{r echo = FALSE, message = FALSE, error = FALSE}
+library(plotly)
+readRDS(file = "dengue.rds")
+```
+

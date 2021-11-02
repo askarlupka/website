@@ -40,6 +40,6 @@ superuser: true
 title: Amanda Skarlupka
 ---
 
-Amanda Skarlupka is a graduate student at the University of Georgia pursuing a dual degree in Infectious Diseases (Ph.D.) in Dr. Ted Ross' laboratory and Biostatistics and Epidemiology (MS) in Dr. Andreas Handel's research group. Her research interested include modeling the immune system response to vaccinations and infections. By combining her expertise in experimental and computational techniques she provides an interface to facilitate communication between research groups. 
+Amanda Skarlupka is a graduate student at the University of Georgia pursuing a dual degree in Infectious Diseases (Ph.D.) in [Dr. Ted Ross\' laboratory](http://www.cvi-uga.com/Individual/Ross.html#) and Biostatistics and Epidemiology (MS) in [Dr. Andreas Handel's research group](https://handelgroup.uga.edu/). Her research interested include modeling the immune system response to vaccinations and infections. By combining her expertise in experimental and computational techniques she provides an interface to facilitate communication between research groups. 
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/Curriculum vitae_20210901.pdf" "newtab" >}}CV here{{< /staticref >}}.

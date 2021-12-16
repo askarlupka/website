@@ -5,12 +5,115 @@
     <link>https://academic-demo.netlify.app/</link>
       <atom:link href="https://academic-demo.netlify.app/index.xml" rel="self" type="application/rss+xml" />
     <description>Academic</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 04 Oct 2021 13:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 15 Dec 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://academic-demo.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Academic</title>
       <link>https://academic-demo.netlify.app/</link>
     </image>
+    
+    <item>
+      <title>Measles Vaccination Analysis</title>
+      <link>https://academic-demo.netlify.app/project/measles-vaccination/</link>
+      <pubDate>Wed, 15 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>https://academic-demo.netlify.app/project/measles-vaccination/</guid>
+      <description>
+&lt;script src=&#34;https://academic-demo.netlify.app/project/measles-vaccination/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;low-vaccination-rates-and-high-personal-exemption-percentages-in-schools-may-contribute-to-increasing-the-odds-of-a-measles-outbreak&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Low vaccination rates and high personal exemption percentages in schools may contribute to increasing the odds of a measles outbreak&lt;/h1&gt;
+&lt;div id=&#34;amanda-l.-skarlupka&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Amanda L. Skarlupka&lt;/h2&gt;
+&lt;div id=&#34;affiliations&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Affiliations:&lt;/h3&gt;
+&lt;p&gt;Center for Vaccines and Immunology, Department of Infectious Diseases, University of Georgia, Athens, GA.
+Abstract— (50 words)
+Decreasing vaccination rates among school aged children are leading to an increasing incidence of the vaccine preventable childhood disease, measles. Decreasing vaccination and increasing personal exemptions may contribute to increasing the odds of measles outbreak. Medical exemptions were not found to potentially contribute. Limiting personal exemptions may decrease measles outbreaks.
+Text—(1199 words)
+Introduction
+Measles is highly contagious and transmitted from coughing and sneezing and direct contact with infected individuals. Symptoms include fever, cough, runny nose and a characteristic rash. Non-immunized individuals have a 90% chance of contracting the disease when exposed [1]. The live-attenuated measles vaccine should be administered in two doses at 12 months and right before entering kindergarten, and is in combination with mumps and rubella as MMR [2]. The immunity is defined to be lifelong. The vaccine is considered safe, causing mild adverse reactions such as fever in 5-15% of the individuals, and a rash lasting 1-3 days in roughly 5% of the individuals [2].
+Vaccine hesitancy and antivaccination movements contribute to decreased vaccination in schools and has been declared by the World Health Organization a threat to global health. This anti-vaccination movement is often spread and escalated through misinformation and social media [3]. Previously it has been determined that MMR vaccination reduces the incidence rate for that population [4]. But the overall vaccination rate in schools has decreasing since 2000 and the number of cases increasing up to 1282 cases in 2019 [5]. Therefore, it is important to maintain high proportions of vaccinated populations to limit disease transmission.
+With the increasing percentages of school age children not being vaccinated due to medical and personal reasons. I aimed to understand how these increasing exemptions and decreasing vaccination rates effected the odds of a measles outbreak.
+Materials and Methods
+The data used for this study were gathered from two different sources. The vaccination were from the Wall Street Journal publication [6], available at &lt;a href=&#34;https://github.com/WSJ/measles-data&#34; class=&#34;uri&#34;&gt;https://github.com/WSJ/measles-data&lt;/a&gt;. The vaccination data covers the 2017-2018 school year for eleven states, and the other twenty-two states’ data are for 2018-2019. Rates and percentages were assumed to be similar from year to year. The school’s name, state, county, district, type, enrollment, MMR and overall vaccination rate, and separate percentages of students exempted from vaccination for medical, personal and religious reasons.
+The United States case information was from the supplementary excel file from the Gardner (2020) article [7]. The case data is from the cases reported in the United States from during the year 2019. Data was initially gathered and collated from numerous sources including news reports, and state public health databases. All data was analyzed using R version 4.0.2 and RStudio [8].
+Data from the continental United States was used for analysis. Variables that were incomplete or unnecessary were removed, including religious exemption, enrollment data, type, district, name, and index. County level rates and percentages were averages. Number of cases were shown in graphs as log base 10 transformed values. Statistical significance was defined as a p-value &amp;lt; 0.05.
+Results
+The cases from 2019 were not localized to a single state (Fig 1A). The number of cases ranged across the United States with the highest number of measles cases being in New York State (1072 cases). However, when looking at the data on a higher resolution (county level) it became clear that the cases were not evenly dispersed throughout a state (Fig 1B). Therefore, the data was analyzed at the county level to limit invalid state-level assumptions. For example, within New York state, the cases were centered around New York City. Washington and Oregon also had a high case count across the counties bordering the western coast.
+The vaccination data was not available for all states. However, when looking at the vaccination data for measles, mumps, and rubella (MMR) vaccination specifically (Fig 1C), the percentage was consistently high across the available regions with an estimated mean value of 94.32% (n = 28,324 counties, 95% confidence interval (CI): 94.22%, 94.43%). The personal exemption percentages of the entire country had a mean of 6.93% (n = 6411 counties, 95% CI: 6.73%, 7.13%) (Fig 1D). The medical exemption percentages had a mean of 3.10% (n = 12,972 counties, 95% CI: 3.03%, 3.18%) (Fig 1E). The overall vaccination percent for the country was lower than that of the MMR vaccination coverage at a mean value of 92.0% (n = 26,243 counties, 95% CI: 91.88%, 92.13%) (Fig 1F).
+After separating the vaccination data based on county, the most informative states that also had a high measles case load were Washington and Oregon. These two states were selected for further analysis to determine if there was any relation between vaccination rates and exemption percentages and case number. Figure 2 presents the exemption, vaccination, and cases for both Washington and Oregon.
+Odds ratios were determined using factored continuous variables. The factor levels cutoffs were determined by the quantiles of the northwestern county data. After which the odds ratios were determined for the four quantiles compared to an outcome of presence of a cases. Each exposure was done separately (Table 1).
+The highest overall vaccination coverage of 93-98% was used as the reference. The 89-93% overall coverage had 5.36 times higher odds of have a case, and the 83-89% had a 2.55 times higher odds of a case compared to the reference. The lowest vaccination coverage 53-83% had 0.89 time the odds of having a case. With a p-value of 0.113, the 89-93% overall vaccination coverage warrants further analysis. The highest MMR vaccination coverage of 95-100% was used as the reference. The 92-95% MMR coverage had 5.25 times higher odds of have a case, and the 89-92% had 3.23 times higher odds of a case compared to the reference. The lowest MMR vaccination coverage, 71-89%, had 1.76 times the odds of case.
+For personal exemptions, the lowest percentage was used as the reference, 0.75-3%. The 3-5.4% percentage had an odds ratio of 6.02, and the 5.4-7.1% had an odds ratio of 3.45. The highest exposure, 7.1-29.2% had an odds ratio of 1.00. The p-values were not significant. However, the 3-5.4% group had the lowest p-value of the odds ratio of 0.086. This relationship along with the previous case of overall vaccination coverage should be investigated further. The medical exemption category 0-0.5% was used as the reference. The 0.5-2.0% group had an odds ratio of 0.64 and the 2-13.7% group had a ratio of 0.59, with non-significant p-values.
+Discussion
+No odds ratio was significantly different compared to the reference group. However, some of the groups were close to significant. The 3-5.4% compared to 0.75-3% personal exemption group had an odds ratio of 6.02 with a p-value of 0.086. Although this was not significant this indicates something further to look into. With only 73 cases in the two states and by creating four different factors the data may not be factored adequately. When comparing medical exemptions, there was no factor that was close to being significant. Thus medical exemptions may not contribute to the odds of a measles outbreak as much as personal exemptions.
+Further analysis could include an additional analysis of the specific outbreak. Data including school enrollment numbers, population size, religious exemptions and population religion, may prove useful in future comparisons. Religious data would be insightful especially due to the 2018 outbreak in New York occurring in populations where vaccination is against religious belief [9, 10].
+In conclusion, this research indicates that decreased vaccination coverage and increased personal exemptions may contribute to increased measles cases, but it does not implicate medical exemptions as a factor.
+ 
+Author Bio
+Amanda Skarlupka is a graduate researcher investigating the design of broadly reactive influenza vaccines. Her interests include immunology and data analysis.
+References
+1. CDC, Measles, in Epidemiology and Prevention of Vaccine-Preventable Diseases, J. Hamborsky, A. Kroger, and S. Wolfe, Editors. 2015, Public Health Foundation: Washington D.C. p. 22.
+2. Rota, P.A., et al., Measles. Nat Rev Dis Primers, 2016. 2: p. 16049.
+3. Dhaliwal, D. and C. Mannion, Antivaccine Messages on Facebook: Preliminary Audit. JMIR Public Health Surveill, 2020. 6(4): p. e18878.
+4. Geier, D.A., J.K. Kern, and M.R. Geier, Childhood MMR vaccination and the incidence rate of measles infection: a ten year longitudinal cohort study of American children born in the 1990s. BMC Pediatr, 2019. 19(1): p. 325.
+5. Sinclair, D.R., et al., Forecasted Size of Measles Outbreaks Associated With Vaccination Exemptions for Schoolchildren. JAMA Netw Open, 2019. 2(8): p. e199768.
+6. Moriarty, D., T. Umlauf, and B. Abbot, What’s the Measles Vaccination Rate at Your Child’s School?, in The Wall Street Journal. 2019.
+7. Gardner, L., et al., Persistence of US measles risk due to vaccine hesitancy and outbreaks abroad. The Lancet Infectious Diseases, 2020. 20(10): p. 1114-1115.
+8. RStudio-Team, RStudio: Integrated Development for R. 2020, RStudio, PBC: Boston, MA.
+9. Kennedy, A.M. and D.A. Gust, Measles outbreak associated with a church congregation: a study of immunization attitudes of congregation members. Public Health Rep, 2008. 123(2): p. 126-34.
+10. Knol, M., et al., Large ongoing measles outbreak in a religious community in the Netherlands since May 2013. Euro Surveill, 2013. 18(36): p. pii=20580.&lt;/p&gt;
+&lt;p&gt;Address for correspondence: Amanda L. Skarlupka, Center for Vaccines and Immunology, Department of Infectious Disease, University of Georgia, 501 D. W. Drive, Athens, GA, 30602 USA; e-mail: &lt;a href=&#34;mailto:skarlupka@uga.edu&#34; class=&#34;email&#34;&gt;skarlupka@uga.edu&lt;/a&gt;
+ 
+Table 1. Odds ratio of Northwestern counties’ vaccination and exemption percentages and the odds of having a measles case.
+COVERAGE ODDS RATIO P-VALUE
+OVERALL VACCINATION 93-98% Ref
+89-93% 5.36 0.113
+83-89% 2.55 0.440
+53-83% 0.89 0.944
+MMR VACCINATION 95-100% Ref
+92-95% 5.25 0.133
+89-92% 3.23 0.327
+71-89% 1.76 0.673
+PERSONAL EXEMPTION 0.75-3% Ref
+3-5.4% 6.02 0.086
+5.4-7.1% 3.45 0.300
+7.1-29.2% 1.00 1.00
+MEDICAL EXEMPTION 0-0.5% Ref
+0.5 – 2.0% 0.64 0.665
+2-13.7% 0.59 0.555&lt;/p&gt;
+&lt;p&gt; 
+Figure 1. Measles cases, vaccination coverage, and exemption percentages in the continental United States in 2019. Log,10 number of cases by state (A) and by county (B). Measles, mumps, and rubella (MMR) vaccination (C), personal exemption (D), medical exemption (E), and overall vaccination (F) percentages range between 0 and 100%. Grey = no data.
+ 
+Figure 2. Measles cases, vaccination coverage, and exemption percentages in the Northwestern United States in 2019. Measles, mumps, and rubella (MMR) vaccination (A), personal exemption (B), medical exemption (C), and overall vaccination (D) percentages range between 0 and 100%. Log,10 number of cases by county (E). Red outline = counties with measles cases. Grey = no data.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>DNV COBRA Vaccine Selection</title>
+      <link>https://academic-demo.netlify.app/project/dengue-cartography/</link>
+      <pubDate>Tue, 02 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://academic-demo.netlify.app/project/dengue-cartography/</guid>
+      <description>
+&lt;script src=&#34;https://academic-demo.netlify.app/project/dengue-cartography/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://academic-demo.netlify.app/project/dengue-cartography/index_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://academic-demo.netlify.app/project/dengue-cartography/index_files/plotly-binding/plotly.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://academic-demo.netlify.app/project/dengue-cartography/index_files/typedarray/typedarray.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://academic-demo.netlify.app/project/dengue-cartography/index_files/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://academic-demo.netlify.app/project/dengue-cartography/index_files/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://academic-demo.netlify.app/project/dengue-cartography/index_files/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://academic-demo.netlify.app/project/dengue-cartography/index_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://academic-demo.netlify.app/project/dengue-cartography/index_files/plotly-main/plotly-latest.min.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;htmlwidget-1&#34; style=&#34;width:672px;height:480px;&#34; class=&#34;plotly html-widget&#34;&gt;&lt;/div&gt;
+&lt;script type=&#34;application/json&#34; data-for=&#34;htmlwidget-1&#34;&gt;{&#34;x&#34;:{&#34;visdat&#34;:{&#34;728d227b00df&#34;:[&#34;function () &#34;,&#34;plotlyVisDat&#34;]},&#34;cur_data&#34;:&#34;728d227b00df&#34;,&#34;attrs&#34;:{&#34;728d227b00df&#34;:{&#34;x&#34;:{},&#34;y&#34;:{},&#34;z&#34;:{},&#34;text&#34;:{},&#34;color&#34;:{},&#34;alpha_stroke&#34;:1,&#34;sizes&#34;:[10,100],&#34;spans&#34;:[1,20],&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;markers&#34;,&#34;symbol&#34;:{},&#34;symbols&#34;:[&#34;circle&#34;,&#34;square&#34;],&#34;inherit&#34;:true},&#34;728d227b00df.1&#34;:{&#34;x&#34;:{},&#34;y&#34;:{},&#34;z&#34;:{},&#34;text&#34;:{},&#34;color&#34;:{},&#34;alpha_stroke&#34;:1,&#34;sizes&#34;:[10,100],&#34;spans&#34;:[1,20],&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;text&#34;,&#34;inherit&#34;:true}},&#34;layout&#34;:{&#34;margin&#34;:{&#34;b&#34;:40,&#34;l&#34;:60,&#34;t&#34;:25,&#34;r&#34;:10},&#34;title&#34;:&#34;Dengue Antigens/Sera in 3D Space: Stress = 74.77&#34;,&#34;scene&#34;:{&#34;xaxis&#34;:{&#34;title&#34;:&#34;Antigenic Distance Unit&#34;},&#34;yaxis&#34;:{&#34;title&#34;:&#34;Antigenic Distance Unit&#34;},&#34;zaxis&#34;:{&#34;title&#34;:&#34;Antigenic Distance Unit&#34;}},&#34;hovermode&#34;:&#34;closest&#34;,&#34;showlegend&#34;:true},&#34;source&#34;:&#34;A&#34;,&#34;config&#34;:{&#34;showSendToCloud&#34;:false},&#34;data&#34;:[{&#34;x&#34;:[0.796106518078437,0.351520898477079,-1.25825358627161,-4.01017821032453],&#34;y&#34;:[1.58714591224027,-2.41000662702293,0.811957379295027,1.64419792518229],&#34;z&#34;:[0.535585840842574,1.12763861863607,-1.77212804016156,2.07024708245659],&#34;text&#34;:[&#34;COBRA 1&#34;,&#34;COBRA 2&#34;,&#34;COBRA 3&#34;,&#34;COBRA 4&#34;],&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;markers&#34;,&#34;name&#34;:&#34;COBRA&lt;br /&gt;sera&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(102,194,165,1)&#34;,&#34;symbol&#34;:&#34;square&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(102,194,165,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(102,194,165,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(102,194,165,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(102,194,165,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(102,194,165,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[1.39806143665463,2.368339017953,1.13469612757862],&#34;y&#34;:[3.58212618704867,2.34161204149525,3.29015449546967],&#34;z&#34;:[-0.349014724307742,0.917163415713673,-0.217217007514318],&#34;text&#34;:[&#34;Hawaii&#34;,&#34;American&#34;,&#34;Asian&#34;],&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;markers&#34;,&#34;name&#34;:&#34;DV1&lt;br /&gt;antigen&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;,&#34;symbol&#34;:&#34;circle&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[3.38519802975969],&#34;y&#34;:[1.54078739047182],&#34;z&#34;:[1.08427035011732],&#34;text&#34;:&#34;Hawaii&#34;,&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;markers&#34;,&#34;name&#34;:&#34;DV1&lt;br /&gt;sera&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;,&#34;symbol&#34;:&#34;square&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[1.04105079336964,0.819482930702842,0.557050206990874],&#34;y&#34;:[-0.953938781150294,-1.11778655365321,0.291215082738611],&#34;z&#34;:[3.60514390581775,0.963973298579253,2.02803211764276],&#34;text&#34;:[&#34;NGC&#34;,&#34;American&#34;,&#34;Asian&#34;],&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;markers&#34;,&#34;name&#34;:&#34;DV2&lt;br /&gt;antigen&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;,&#34;symbol&#34;:&#34;circle&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[-0.609115554270134],&#34;y&#34;:[1.01880146892839],&#34;z&#34;:[1.1182063354018],&#34;text&#34;:&#34;NGC&#34;,&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;markers&#34;,&#34;name&#34;:&#34;DV2&lt;br /&gt;sera&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;,&#34;symbol&#34;:&#34;square&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[-0.399211866962249,-0.304172489548584,-1.09298922175702],&#34;y&#34;:[0.0379147557881392,0.178410576156966,2.34717962581399],&#34;z&#34;:[-2.10980835043434,-2.02296573421157,-2.56280749177942],&#34;text&#34;:[&#34;H87&#34;,&#34;American&#34;,&#34;Asian&#34;],&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;markers&#34;,&#34;name&#34;:&#34;DV3&lt;br /&gt;antigen&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;,&#34;symbol&#34;:&#34;circle&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[-0.496628375088577],&#34;y&#34;:[-1.08548582561947],&#34;z&#34;:[-2.40786333175202],&#34;text&#34;:&#34;H87&#34;,&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;markers&#34;,&#34;name&#34;:&#34;DV3&lt;br /&gt;sera&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;,&#34;symbol&#34;:&#34;square&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[-3.09201242876377,-2.6575451371647,-2.78666376162756],&#34;y&#34;:[1.15955961580425,2.27537090278271,1.47114415674746],&#34;z&#34;:[1.66556171557522,2.77451780528911,1.22998706728569],&#34;text&#34;:[&#34;H241&#34;,&#34;American&#34;,&#34;Asian&#34;],&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;markers&#34;,&#34;name&#34;:&#34;DV4&lt;br /&gt;antigen&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;,&#34;symbol&#34;:&#34;circle&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[-4.64014331477733],&#34;y&#34;:[1.07769955381881],&#34;z&#34;:[2.33509194374514],&#34;text&#34;:&#34;H241&#34;,&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;markers&#34;,&#34;name&#34;:&#34;DV4&lt;br /&gt;sera&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;,&#34;symbol&#34;:&#34;square&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[0.796106518078437,0.351520898477079,-1.25825358627161,-4.01017821032453],&#34;y&#34;:[1.58714591224027,-2.41000662702293,0.811957379295027,1.64419792518229],&#34;z&#34;:[0.535585840842574,1.12763861863607,-1.77212804016156,2.07024708245659],&#34;text&#34;:[&#34;COBRA 1&#34;,&#34;COBRA 2&#34;,&#34;COBRA 3&#34;,&#34;COBRA 4&#34;],&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;text&#34;,&#34;name&#34;:&#34;COBRA&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(102,194,165,1)&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(102,194,165,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(102,194,165,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(102,194,165,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(102,194,165,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(102,194,165,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[1.39806143665463,2.368339017953,1.13469612757862,3.38519802975969],&#34;y&#34;:[3.58212618704867,2.34161204149525,3.29015449546967,1.54078739047182],&#34;z&#34;:[-0.349014724307742,0.917163415713673,-0.217217007514318,1.08427035011732],&#34;text&#34;:[&#34;Hawaii&#34;,&#34;American&#34;,&#34;Asian&#34;,&#34;Hawaii&#34;],&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;text&#34;,&#34;name&#34;:&#34;DV1&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(252,141,98,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[1.04105079336964,0.819482930702842,0.557050206990874,-0.609115554270134],&#34;y&#34;:[-0.953938781150294,-1.11778655365321,0.291215082738611,1.01880146892839],&#34;z&#34;:[3.60514390581775,0.963973298579253,2.02803211764276,1.1182063354018],&#34;text&#34;:[&#34;NGC&#34;,&#34;American&#34;,&#34;Asian&#34;,&#34;NGC&#34;],&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;text&#34;,&#34;name&#34;:&#34;DV2&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(141,160,203,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[-0.399211866962249,-0.304172489548584,-1.09298922175702,-0.496628375088577],&#34;y&#34;:[0.0379147557881392,0.178410576156966,2.34717962581399,-1.08548582561947],&#34;z&#34;:[-2.10980835043434,-2.02296573421157,-2.56280749177942,-2.40786333175202],&#34;text&#34;:[&#34;H87&#34;,&#34;American&#34;,&#34;Asian&#34;,&#34;H87&#34;],&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;text&#34;,&#34;name&#34;:&#34;DV3&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(231,138,195,1)&#34;},&#34;frame&#34;:null},{&#34;x&#34;:[-3.09201242876377,-2.6575451371647,-2.78666376162756,-4.64014331477733],&#34;y&#34;:[1.15955961580425,2.27537090278271,1.47114415674746,1.07769955381881],&#34;z&#34;:[1.66556171557522,2.77451780528911,1.22998706728569,2.33509194374514],&#34;text&#34;:[&#34;H241&#34;,&#34;American&#34;,&#34;Asian&#34;,&#34;H241&#34;],&#34;type&#34;:&#34;scatter3d&#34;,&#34;mode&#34;:&#34;text&#34;,&#34;name&#34;:&#34;DV4&#34;,&#34;marker&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;,&#34;line&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;}},&#34;textfont&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;},&#34;error_x&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;rgba(166,216,84,1)&#34;},&#34;frame&#34;:null}],&#34;highlight&#34;:{&#34;on&#34;:&#34;plotly_click&#34;,&#34;persistent&#34;:false,&#34;dynamic&#34;:false,&#34;selectize&#34;:false,&#34;opacityDim&#34;:0.2,&#34;selected&#34;:{&#34;opacity&#34;:1},&#34;debounce&#34;:0},&#34;shinyEvents&#34;:[&#34;plotly_hover&#34;,&#34;plotly_click&#34;,&#34;plotly_selected&#34;,&#34;plotly_relayout&#34;,&#34;plotly_brushed&#34;,&#34;plotly_brushing&#34;,&#34;plotly_clickannotation&#34;,&#34;plotly_doubleclick&#34;,&#34;plotly_deselect&#34;,&#34;plotly_afterplot&#34;,&#34;plotly_sunburstclick&#34;],&#34;base_url&#34;:&#34;https://plot.ly&#34;},&#34;evals&#34;:[],&#34;jsHooks&#34;:[]}&lt;/script&gt;
+</description>
+    </item>
     
     <item>
       <title>Antigenic cartography and landscapes of influenza strains with preimmune human sera.</title>
@@ -33,398 +136,6 @@
     </item>
     
     <item>
-      <title>Welcome to Wowchemy, the website builder for Hugo</title>
-      <link>https://academic-demo.netlify.app/post/getting-started/</link>
-      <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://academic-demo.netlify.app/post/getting-started/</guid>
-      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;The Wowchemy website builder for Hugo, along with its starter templates, is designed for professional creators, educators, and teams/organizations - although it can be used to create any kind of site&lt;/li&gt;
-&lt;li&gt;The template can be modified and customised to suit your needs. It&amp;rsquo;s a good platform for anyone looking to take control of their data and online identity whilst having the convenience to start off with a &lt;strong&gt;no-code solution (write in Markdown and customize with YAML parameters)&lt;/strong&gt; and having &lt;strong&gt;flexibility to later add even deeper personalization with HTML and CSS&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;You can work with all your favourite tools and apps with hundreds of plugins and integrations to speed up your workflows, interact with your readers, and much more&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  id=&#34;figure-the-template-is-mobile-first-with-a-responsive-design-to-ensure-that-your-site-looks-stunning-on-every-device&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://raw.githubusercontent.com/wowchemy/wowchemy-hugo-modules/master/academic.png&#34; alt=&#34;The template is mobile first with a responsive design to ensure that your site looks stunning on every device.&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;figcaption&gt;
-      The template is mobile first with a responsive design to ensure that your site looks stunning on every device.
-    &lt;/figcaption&gt;&lt;/figure&gt;
-&lt;h2 id=&#34;get-started&#34;&gt;Get Started&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;👉 &lt;a href=&#34;https://wowchemy.com/templates/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Create a new site&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;📚 &lt;a href=&#34;https://wowchemy.com/docs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Personalize your site&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;💬 &lt;a href=&#34;https://discord.gg/z8wNYzb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chat with the &lt;strong&gt;Wowchemy community&lt;/strong&gt;&lt;/a&gt; or &lt;a href=&#34;https://discourse.gohugo.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Hugo community&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;🐦 Twitter: &lt;a href=&#34;https://twitter.com/wowchemy&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@wowchemy&lt;/a&gt; &lt;a href=&#34;https://twitter.com/GeorgeCushen&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;@GeorgeCushen&lt;/a&gt; &lt;a href=&#34;https://twitter.com/search?q=%28%23MadeWithWowchemy%20OR%20%23MadeWithAcademic%29&amp;amp;src=typed_query&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#MadeWithWowchemy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;💡 &lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-modules/issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Request a &lt;strong&gt;feature&lt;/strong&gt; or report a &lt;strong&gt;bug&lt;/strong&gt; for &lt;em&gt;Wowchemy&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;⬆️ &lt;strong&gt;Updating Wowchemy?&lt;/strong&gt; View the &lt;a href=&#34;https://wowchemy.com/docs/guide/update/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Update Guide&lt;/a&gt; and &lt;a href=&#34;https://wowchemy.com/updates/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Release Notes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;crowd-funded-open-source-software&#34;&gt;Crowd-funded open-source software&lt;/h2&gt;
-&lt;p&gt;To help us develop this template and software sustainably under the MIT license, we ask all individuals and businesses that use it to help support its ongoing maintenance and development via sponsorship.&lt;/p&gt;
-&lt;h3 id=&#34;-click-here-to-become-a-sponsor-and-help-support-wowchemys-future-httpswowchemycomplans&#34;&gt;&lt;a href=&#34;https://wowchemy.com/plans/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;❤️ Click here to become a sponsor and help support Wowchemy&amp;rsquo;s future ❤️&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;As a token of appreciation for sponsoring, you can &lt;strong&gt;unlock &lt;a href=&#34;https://wowchemy.com/plans/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;these&lt;/a&gt; awesome rewards and extra features 🦄✨&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;ecosystem&#34;&gt;Ecosystem&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/wowchemy/hugo-academic-cli&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hugo Academic CLI&lt;/a&gt;:&lt;/strong&gt; Automatically import publications from BibTeX&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;inspiration&#34;&gt;Inspiration&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Check out the latest &lt;strong&gt;demo&lt;/strong&gt;&lt;/a&gt; of what you&amp;rsquo;ll get in less than 10 minutes, or &lt;a href=&#34;https://wowchemy.com/user-stories/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;view the &lt;strong&gt;showcase&lt;/strong&gt;&lt;/a&gt; of personal, project, and business sites.&lt;/p&gt;
-&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Page builder&lt;/strong&gt; - Create &lt;em&gt;anything&lt;/em&gt; with &lt;a href=&#34;https://wowchemy.com/docs/page-builder/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;widgets&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;elements&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Edit any type of content&lt;/strong&gt; - Blog posts, publications, talks, slides, projects, and more!&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Create content&lt;/strong&gt; in &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Markdown&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&#34;https://wowchemy.com/docs/import/jupyter/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Jupyter&lt;/strong&gt;&lt;/a&gt;, or &lt;a href=&#34;https://wowchemy.com/docs/install-locally/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;RStudio&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Plugin System&lt;/strong&gt; - Fully customizable &lt;a href=&#34;https://wowchemy.com/docs/customization/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;color&lt;/strong&gt; and &lt;strong&gt;font themes&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Display Code and Math&lt;/strong&gt; - Code highlighting and &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LaTeX math&lt;/a&gt; supported&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Integrations&lt;/strong&gt; - &lt;a href=&#34;https://analytics.google.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google Analytics&lt;/a&gt;, &lt;a href=&#34;https://disqus.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Disqus commenting&lt;/a&gt;, Maps, Contact Forms, and more!&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Beautiful Site&lt;/strong&gt; - Simple and refreshing one page design&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Industry-Leading SEO&lt;/strong&gt; - Help get your website found on search engines and social media&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Media Galleries&lt;/strong&gt; - Display your images and videos with captions in a customizable gallery&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Mobile Friendly&lt;/strong&gt; - Look amazing on every screen with a mobile friendly version of your site&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-language&lt;/strong&gt; - 34+ language packs including English, 中文, and Português&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-user&lt;/strong&gt; - Each author gets their own profile page&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Privacy Pack&lt;/strong&gt; - Assists with GDPR&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Stand Out&lt;/strong&gt; - Bring your site to life with animation, parallax backgrounds, and scroll effects&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;One-Click Deployment&lt;/strong&gt; - No servers. No databases. Only files.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
-&lt;p&gt;Wowchemy and its templates come with &lt;strong&gt;automatic day (light) and night (dark) mode&lt;/strong&gt; built-in. Alternatively, visitors can choose their preferred mode - click the moon icon in the top right of the &lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Demo&lt;/a&gt; to see it in action! Day/night mode can also be disabled by the site admin in &lt;code&gt;params.toml&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://wowchemy.com/docs/customization&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Choose a stunning &lt;strong&gt;theme&lt;/strong&gt; and &lt;strong&gt;font&lt;/strong&gt;&lt;/a&gt; for your site. Themes are fully customizable.&lt;/p&gt;
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
-&lt;p&gt;Copyright 2016-present &lt;a href=&#34;https://georgecushen.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;George Cushen&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Released under the &lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-modules/blob/master/LICENSE.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MIT&lt;/a&gt; license.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Hello R Markdown</title>
-      <link>https://academic-demo.netlify.app/post/2020-12-01-r-rmarkdown/</link>
-      <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
-      <guid>https://academic-demo.netlify.app/post/2020-12-01-r-rmarkdown/</guid>
-      <description>
-&lt;script src=&#34;https://academic-demo.netlify.app/post/2020-12-01-r-rmarkdown/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-
-
-&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R Markdown&lt;/h1&gt;
-&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &amp;lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Including Plots&lt;/h1&gt;
-&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
-  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
-  init.angle = -50, border = NA
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;https://academic-demo.netlify.app/post/2020-12-01-r-rmarkdown/index.en_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: A fancy pie chart.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Writing technical content in Academic</title>
-      <link>https://academic-demo.netlify.app/post/writing-technical-content/</link>
-      <pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://academic-demo.netlify.app/post/writing-technical-content/</guid>
-      <description>&lt;p&gt;Academic is designed to give technical content creators a seamless experience. You can focus on the content and Academic handles the rest.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Highlight your code snippets, take notes on math classes, and draw diagrams from textual representation.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;On this page, you&amp;rsquo;ll find some examples of the types of technical content that can be rendered with Academic.&lt;/p&gt;
-&lt;h2 id=&#34;examples&#34;&gt;Examples&lt;/h2&gt;
-&lt;h3 id=&#34;code&#34;&gt;Code&lt;/h3&gt;
-&lt;p&gt;Academic supports a Markdown extension for highlighting code syntax. You can enable this feature by toggling the &lt;code&gt;highlight&lt;/code&gt; option in your &lt;code&gt;config/_default/params.toml&lt;/code&gt; file.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```python
-import pandas as pd
-data = pd.read_csv(&amp;quot;data.csv&amp;quot;)
-data.head()
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pandas as pd
-data = pd.read_csv(&amp;quot;data.csv&amp;quot;)
-data.head()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;charts&#34;&gt;Charts&lt;/h3&gt;
-&lt;p&gt;Academic supports the popular &lt;a href=&#34;https://plot.ly/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Plotly&lt;/a&gt; chart format.&lt;/p&gt;
-&lt;p&gt;Save your Plotly JSON in your page folder, for example &lt;code&gt;chart.json&lt;/code&gt;, and then add the &lt;code&gt;{{&amp;lt; chart data=&amp;quot;chart&amp;quot; &amp;gt;}}&lt;/code&gt; shortcode where you would like the chart to appear.&lt;/p&gt;
-&lt;p&gt;Demo:&lt;/p&gt;
-
-
-&lt;div id=&#34;chart-132968574&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
-&lt;script&gt;
-  (function() {
-    let a = setInterval( function() {
-      if ( typeof window.Plotly === &#39;undefined&#39; ) {
-        return;
-      }
-      clearInterval( a );
-
-      Plotly.d3.json(&#34;./line-chart.json&#34;, function(chart) {
-        Plotly.plot(&#39;chart-132968574&#39;, chart.data, chart.layout, {responsive: true});
-      });
-    }, 500 );
-  })();
-&lt;/script&gt;
-&lt;p&gt;You might also find the &lt;a href=&#34;http://plotly-json-editor.getforge.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Plotly JSON Editor&lt;/a&gt; useful.&lt;/p&gt;
-&lt;h3 id=&#34;math&#34;&gt;Math&lt;/h3&gt;
-&lt;p&gt;Academic supports a Markdown extension for $\LaTeX$ math. You can enable this feature by toggling the &lt;code&gt;math&lt;/code&gt; option in your &lt;code&gt;config/_default/params.toml&lt;/code&gt; file.&lt;/p&gt;
-&lt;p&gt;To render &lt;em&gt;inline&lt;/em&gt; or &lt;em&gt;block&lt;/em&gt; math, wrap your LaTeX math with &lt;code&gt;$...$&lt;/code&gt; or &lt;code&gt;$$...$$&lt;/code&gt;, respectively.&lt;/p&gt;
-&lt;p&gt;Example &lt;strong&gt;math block&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-latex&#34;&gt;$$\gamma_{n} = \frac{ 
-\left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T 
-\left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}
-{\left \|\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right \|^2}$$
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;p&gt;$$\gamma_{n} = \frac{ \left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T \left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}{\left |\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right |^2}$$&lt;/p&gt;
-&lt;p&gt;Example &lt;strong&gt;inline math&lt;/strong&gt; &lt;code&gt;$\nabla F(\mathbf{x}_{n})$&lt;/code&gt; renders as $\nabla F(\mathbf{x}_{n})$.&lt;/p&gt;
-&lt;p&gt;Example &lt;strong&gt;multi-line math&lt;/strong&gt; using the &lt;code&gt;\\\\&lt;/code&gt; math linebreak:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-latex&#34;&gt;$$f(k;p_{0}^{*}) = \begin{cases}p_{0}^{*} &amp;amp; \text{if }k=1, \\\\
-1-p_{0}^{*} &amp;amp; \text{if }k=0.\end{cases}$$
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;p&gt;$$f(k;p_{0}^{*}) = \begin{cases}p_{0}^{*} &amp;amp; \text{if }k=1, \\&lt;br&gt;
-1-p_{0}^{*} &amp;amp; \text{if }k=0.\end{cases}$$&lt;/p&gt;
-&lt;h3 id=&#34;diagrams&#34;&gt;Diagrams&lt;/h3&gt;
-&lt;p&gt;Academic supports a Markdown extension for diagrams. You can enable this feature by toggling the &lt;code&gt;diagram&lt;/code&gt; option in your &lt;code&gt;config/_default/params.toml&lt;/code&gt; file or by adding &lt;code&gt;diagram: true&lt;/code&gt; to your page front matter.&lt;/p&gt;
-&lt;p&gt;An example &lt;strong&gt;flowchart&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-graph TD
-A[Hard] --&amp;gt;|Text| B(Round)
-B --&amp;gt; C{Decision}
-C --&amp;gt;|One| D[Result 1]
-C --&amp;gt;|Two| E[Result 2]
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph TD
-A[Hard] --&amp;gt;|Text| B(Round)
-B --&amp;gt; C{Decision}
-C --&amp;gt;|One| D[Result 1]
-C --&amp;gt;|Two| E[Result 2]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;An example &lt;strong&gt;sequence diagram&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-sequenceDiagram
-Alice-&amp;gt;&amp;gt;John: Hello John, how are you?
-loop Healthcheck
-    John-&amp;gt;&amp;gt;John: Fight against hypochondria
-end
-Note right of John: Rational thoughts!
-John--&amp;gt;&amp;gt;Alice: Great!
-John-&amp;gt;&amp;gt;Bob: How about you?
-Bob--&amp;gt;&amp;gt;John: Jolly good!
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;sequenceDiagram
-Alice-&amp;gt;&amp;gt;John: Hello John, how are you?
-loop Healthcheck
-    John-&amp;gt;&amp;gt;John: Fight against hypochondria
-end
-Note right of John: Rational thoughts!
-John--&amp;gt;&amp;gt;Alice: Great!
-John-&amp;gt;&amp;gt;Bob: How about you?
-Bob--&amp;gt;&amp;gt;John: Jolly good!
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;An example &lt;strong&gt;Gantt diagram&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-gantt
-section Section
-Completed :done,    des1, 2014-01-06,2014-01-08
-Active        :active,  des2, 2014-01-07, 3d
-Parallel 1   :         des3, after des1, 1d
-Parallel 2   :         des4, after des1, 1d
-Parallel 3   :         des5, after des3, 1d
-Parallel 4   :         des6, after des4, 1d
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;gantt
-section Section
-Completed :done,    des1, 2014-01-06,2014-01-08
-Active        :active,  des2, 2014-01-07, 3d
-Parallel 1   :         des3, after des1, 1d
-Parallel 2   :         des4, after des1, 1d
-Parallel 3   :         des5, after des3, 1d
-Parallel 4   :         des6, after des4, 1d
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;An example &lt;strong&gt;class diagram&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-classDiagram
-Class01 &amp;lt;|-- AveryLongClass : Cool
-&amp;lt;&amp;lt;interface&amp;gt;&amp;gt; Class01
-Class09 --&amp;gt; C2 : Where am i?
-Class09 --* C3
-Class09 --|&amp;gt; Class07
-Class07 : equals()
-Class07 : Object[] elementData
-Class01 : size()
-Class01 : int chimp
-Class01 : int gorilla
-class Class10 {
-  &amp;lt;&amp;lt;service&amp;gt;&amp;gt;
-  int id
-  size()
-}
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;classDiagram
-Class01 &amp;lt;|-- AveryLongClass : Cool
-&amp;lt;&amp;lt;interface&amp;gt;&amp;gt; Class01
-Class09 --&amp;gt; C2 : Where am i?
-Class09 --* C3
-Class09 --|&amp;gt; Class07
-Class07 : equals()
-Class07 : Object[] elementData
-Class01 : size()
-Class01 : int chimp
-Class01 : int gorilla
-class Class10 {
-  &amp;lt;&amp;lt;service&amp;gt;&amp;gt;
-  int id
-  size()
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;An example &lt;strong&gt;state diagram&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```mermaid
-stateDiagram
-[*] --&amp;gt; Still
-Still --&amp;gt; [*]
-Still --&amp;gt; Moving
-Moving --&amp;gt; Still
-Moving --&amp;gt; Crash
-Crash --&amp;gt; [*]
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;stateDiagram
-[*] --&amp;gt; Still
-Still --&amp;gt; [*]
-Still --&amp;gt; Moving
-Moving --&amp;gt; Still
-Moving --&amp;gt; Crash
-Crash --&amp;gt; [*]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;todo-lists&#34;&gt;Todo lists&lt;/h3&gt;
-&lt;p&gt;You can even write your todo lists in Academic too:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;- [x] Write math example
-- [x] Write diagram example
-- [ ] Do something else
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Write math example&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Write diagram example&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Do something else&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;tables&#34;&gt;Tables&lt;/h3&gt;
-&lt;p&gt;Represent your data in tables:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;First Header&lt;/th&gt;
-&lt;th&gt;Second Header&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Content Cell&lt;/td&gt;
-&lt;td&gt;Content Cell&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Content Cell&lt;/td&gt;
-&lt;td&gt;Content Cell&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&#34;callouts&#34;&gt;Callouts&lt;/h3&gt;
-&lt;p&gt;Academic supports a &lt;a href=&#34;https://wowchemy.com/docs/content/writing-markdown-latex/#callouts&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shortcode for callouts&lt;/a&gt;, also referred to as &lt;em&gt;asides&lt;/em&gt;, &lt;em&gt;hints&lt;/em&gt;, or &lt;em&gt;alerts&lt;/em&gt;. By wrapping a paragraph in &lt;code&gt;{{% callout note %}} ... {{% /callout %}}&lt;/code&gt;, it will render as an aside.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% callout note %}}
-A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-{{% /callout %}}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    A Markdown aside is useful for displaying notices, hints, or definitions to your readers.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;h3 id=&#34;spoilers&#34;&gt;Spoilers&lt;/h3&gt;
-&lt;p&gt;Add a spoiler to a page to reveal text, such as an answer to a question, after a button is clicked.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; spoiler text=&amp;quot;Click to view the spoiler&amp;quot; &amp;gt;}}
-You found me!
-{{&amp;lt; /spoiler &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-2&#34;&gt;
-  &lt;summary&gt;Click to view the spoiler&lt;/summary&gt;
-  &lt;p&gt;You found me!&lt;/p&gt;
-&lt;/details&gt;
-&lt;h3 id=&#34;icons&#34;&gt;Icons&lt;/h3&gt;
-&lt;p&gt;Academic enables you to use a wide range of &lt;a href=&#34;https://sourcethemes.com/academic/docs/page-builder/#icons&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;icons from &lt;em&gt;Font Awesome&lt;/em&gt; and &lt;em&gt;Academicons&lt;/em&gt;&lt;/a&gt; in addition to &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/#emojis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;emojis&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Here are some examples using the &lt;code&gt;icon&lt;/code&gt; shortcode to render icons:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; icon name=&amp;quot;terminal&amp;quot; pack=&amp;quot;fas&amp;quot; &amp;gt;}} Terminal  
-{{&amp;lt; icon name=&amp;quot;python&amp;quot; pack=&amp;quot;fab&amp;quot; &amp;gt;}} Python  
-{{&amp;lt; icon name=&amp;quot;r-project&amp;quot; pack=&amp;quot;fab&amp;quot; &amp;gt;}} R
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;renders as&lt;/p&gt;
-&lt;p&gt;
-  &lt;i class=&#34;fas fa-terminal  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Terminal&lt;br&gt;
-
-  &lt;i class=&#34;fab fa-python  pr-1 fa-fw&#34;&gt;&lt;/i&gt; Python&lt;br&gt;
-
-  &lt;i class=&#34;fab fa-r-project  pr-1 fa-fw&#34;&gt;&lt;/i&gt; R&lt;/p&gt;
-&lt;h3 id=&#34;did-you-find-this-page-helpful-consider-sharing-it-&#34;&gt;Did you find this page helpful? Consider sharing it 🙌&lt;/h3&gt;
-</description>
-    </item>
-    
-    <item>
       <title>An example preprint / working paper</title>
       <link>https://academic-demo.netlify.app/publication/preprint/</link>
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
@@ -435,70 +146,6 @@ You found me!
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Display Jupyter Notebooks with Academic</title>
-      <link>https://academic-demo.netlify.app/post/jupyter/</link>
-      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>https://academic-demo.netlify.app/post/jupyter/</guid>
-      <description>&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from IPython.core.display import Image
-Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  &gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./index_1_0.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;/figure&gt;
-&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(&amp;quot;Welcome to Academic!&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;Welcome to Academic!
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;install-python-and-jupyterlab&#34;&gt;Install Python and JupyterLab&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.anaconda.com/distribution/#download-section&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Install Anaconda&lt;/a&gt; which includes Python 3 and JupyterLab.&lt;/p&gt;
-&lt;p&gt;Alternatively, install JupyterLab with &lt;code&gt;pip3 install jupyterlab&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;create-or-upload-a-jupyter-notebook&#34;&gt;Create or upload a Jupyter notebook&lt;/h2&gt;
-&lt;p&gt;Run the following commands in your Terminal, substituting &lt;code&gt;&amp;lt;MY-WEBSITE-FOLDER&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;SHORT-POST-TITLE&amp;gt;&lt;/code&gt; with the file path to your Academic website folder and a short title for your blog post (use hyphens instead of spaces), respectively:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir -p &amp;lt;MY-WEBSITE-FOLDER&amp;gt;/content/post/&amp;lt;SHORT-POST-TITLE&amp;gt;/
-cd &amp;lt;MY-WEBSITE-FOLDER&amp;gt;/content/post/&amp;lt;SHORT-POST-TITLE&amp;gt;/
-jupyter lab index.ipynb
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;jupyter&lt;/code&gt; command above will launch the JupyterLab editor, allowing us to add Academic metadata and write the content.&lt;/p&gt;
-&lt;h2 id=&#34;edit-your-post-metadata&#34;&gt;Edit your post metadata&lt;/h2&gt;
-&lt;p&gt;The first cell of your Jupter notebook will contain your post metadata (&lt;a href=&#34;https://sourcethemes.com/academic/docs/front-matter/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;front matter&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;In Jupter, choose &lt;em&gt;Markdown&lt;/em&gt; as the type of the first cell and wrap your Academic metadata in three dashes, indicating that it is YAML front matter:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;---
-title: My post&#39;s title
-date: 2019-09-01
-
-# Put any other Academic metadata here...
----
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Edit the metadata of your post, using the &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;documentation&lt;/a&gt; as a guide to the available options.&lt;/p&gt;
-&lt;p&gt;To set a &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#featured-image&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;featured image&lt;/a&gt;, place an image named &lt;code&gt;featured&lt;/code&gt; into your post&amp;rsquo;s folder.&lt;/p&gt;
-&lt;p&gt;For other tips, such as using math, see the guide on &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;writing content with Academic&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;convert-notebook-to-markdown&#34;&gt;Convert notebook to Markdown&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter nbconvert index.ipynb --to markdown --NbConvertApp.output_files_dir=.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
-&lt;p&gt;This post was created with Jupyter. The orginal files can be found at &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/gcushen/hugo-academic/tree/master/exampleSite/content/post/jupyter&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -629,14 +276,6 @@ Three
 &lt;p&gt;&lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-modules/discussions&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://wowchemy.com/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>External Project</title>
-      <link>https://academic-demo.netlify.app/project/external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://academic-demo.netlify.app/project/external-project/</guid>
-      <description></description>
     </item>
     
     <item>

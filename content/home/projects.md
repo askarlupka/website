@@ -29,6 +29,8 @@ content:
     tag: '*'
   - name: Antibody Responses
     tag: Modeling
+  - name: Epidemiology and Biostatistics
+    tag: Epi
   - name: Vaccine Development
     tag: Vaccine
   - name: Food Microbiology

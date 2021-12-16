@@ -5,9 +5,9 @@ education:
   - course: PhD in Infectious Diseases
     institution: University of Georgia
     year: 2018 - Present
-  - course: MS in Biostatistics and Epidemiology
+  - course: MS in  Epidemiology and Biostatistics
     institution: University of Georgia
-    year: 2021 - Present
+    year: 2020 - Present
   - course: BSc in Microbiology and Botany
     institution: University of Wisconsin - Madison
     year: 2010
@@ -15,8 +15,9 @@ email: "skarlupka@uga.edu"
 highlight_name: false
 interests:
 - Immune responses to vaccination or infection
-- Biomarker Identification
+- Biomarker identification
 - Biostatistics
+- Epidemiology of infectious diseases
 organizations:
 - name: University of Georgia
   url: https://www.uga.edu/
@@ -40,6 +41,6 @@ superuser: true
 title: Amanda Skarlupka
 ---
 
-Amanda Skarlupka is a graduate student at the University of Georgia pursuing a dual degree in Infectious Diseases (Ph.D.) in [Dr. Ted Ross\' laboratory](http://www.cvi-uga.com/Individual/Ross.html#) and Biostatistics and Epidemiology (MS) in [Dr. Andreas Handel's research group](https://handelgroup.uga.edu/). Her research interested include modeling the immune system response to vaccinations and infections. By combining her expertise in experimental and computational techniques she provides an interface to facilitate communication between research groups. 
+Amanda Skarlupka is a graduate student at the University of Georgia pursuing a dual degree in Infectious Diseases (PhD) in [Dr. Ted Ross\' laboratory](http://www.cvi-uga.com/Individual/Ross.html#) and Biostatistics and Epidemiology (MS) in [Dr. Andreas Handel's research group](https://handelgroup.uga.edu/). Her research interested include modeling the immune system response to vaccinations and infections. By combining her expertise in experimental and computational techniques she provides an interface to facilitate communication between research groups. 
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/Curriculum vitae_20210901.pdf" "newtab" >}}CV here{{< /staticref >}}.

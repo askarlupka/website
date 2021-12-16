@@ -1,0 +1,582 @@
+---
+title: "Measles"
+author: "Amanda Skarlupka"
+date: "10/16/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidytuesdayR)
+library(tidyverse)
+library(visdat)
+library(naniar)
+library(readxl)
+library(maps)
+library(sp)
+#library(raster)
+#library(mapproj)
+library(epitools)
+library(stringr)
+library(cowplot)
+library(ggthemes)
+library(Rmisc)
+library(dplyr)
+```
+
+
+Measles Vaccination Data
+```{r}
+tidydata <- tt_load(2020, week=9) 
+measles <- tidydata$measles
+measles
+str(measles)
+summary(measles)
+```
+
+Measles US Case Data
+```{r}
+cases <- read_excel("mmc3.xlsx", sheet = "Data_2019 US Measles Cases")
+```
+
+
+First check to see the class and missing data of the variables.
+```{r}
+vis_dat(measles, warn_large_data = FALSE)
+#There is no value of district, and barely any for x-religious exemption. I'm going to remove district, and look into the xreligous.
+
+measles_cl <- measles %>%
+  dplyr::select(-district)
+```
+There seems to be multiple entries for the same school. All of the values are the same but that lat and lng seem to vary a little. First I'll see if the index numbers are unique or if they repeat based on states.
+
+Looking at the vaccination rate data, there are a lot of -1's. I believe that these are NA's and the rate isn't actually negative 1. 
+
+```{r}
+measles_cl <- measles_cl %>%
+  replace_with_na(replace = list(mmr = -1,
+                                 overall = -1))
+measles_cl %>%
+  filter(index == 1)
+
+# The index is repeated based upon state. So I will group by index, state, name and then take the averages of the lat and longitude.
+
+measles_cl %<>%
+  group_by(index, state, name) %>%
+  dplyr::summarize(
+    type = type,
+    city = city,
+    county = county,
+    enroll = mean(enroll),
+    mmr = median(mmr),
+    overall = median(overall),
+    xmed = median(xmed),
+    xper = median(xper),
+    lat = mean(lat),
+    lng = mean(lng),
+            )
+measles_cl <- distinct(measles_cl)
+
+vis_dat(measles_cl)
+```
+Now I want to change the Character strings to factors. 
+
+```{r}
+measles_cl$state <- as.factor(measles_cl$state)
+measles_cl$county <- as.factor(measles_cl$county)
+measles_cl$index <- as.integer(measles_cl$index)
+measles_cl$type <- as.factor(measles_cl$type)
+levels(measles_cl$type)
+vis_dat(measles_cl)
+```
+
+
+I also want to replace nonpublic with private, and BOCES with public. These are publicly funded organizations in New york. 
+
+```{r}
+
+
+measles_cl$type[measles_cl$type == 'Nonpublic'] <- 'Private'
+measles_cl$type[measles_cl$type == 'BOCES'] <- 'Public'
+
+
+levels(measles_cl$type)
+measles_cl$type <- droplevels(measles_cl$type)
+levels(measles_cl$type)
+
+```
+
+The enrollment is not well documented. According to the original datafile "Depending on the state, enrollment is for kindergarten only or may extend to include other grades." Therefore I will remove enrollment because I won't be able to tell what that value actually means. 
+
+```{r}
+
+measles_cl <- measles_cl %>%
+  dplyr::select(-enroll)
+
+measles_cl$state <- tolower(measles_cl$state)
+measles_cl$county <- tolower(measles_cl$county)
+```
+
+
+## Measles Cases Cleaning
+```{r}
+cases <- cases[,1:4]
+cases_orig <- cases
+
+names <- state.name[match(cases$`State Name`,state.abb)]
+cases$`State Name` <- names
+cases$`State Name` <- as.factor(cases$`State Name`)
+vis_dat(cases)
+colnames(cases) <- c("subregion", "region", "county_FIPS", "cases")
+cases$subregion <- tolower(cases$subregion)
+cases$region <- tolower(cases$region)
+cases
+```
+Join the datasets together
+
+```{r}
+togeth <- left_join(x = measles_cl, y = cases, by = c("county" = "subregion", "state" = "region"))
+vis_dat(togeth)
+togeth <- ungroup(togeth)
+togeth <- droplevels(togeth)
+data <- togeth
+```
+
+The data is pretty clean now so lets look at the distributions of the single categorical variables.
+
+Summaries, means, and confidence intervals 
+```{r}
+summary(togeth$mmr, na.rm = TRUE)
+mmr <- togeth %>%
+  filter(!is.na(mmr)) %>%
+  pull(mmr)
+length(mmr)
+CI(mmr)
+
+xper <- togeth %>%
+  filter(!is.na(xper)) %>%
+  pull(xper)
+length(xper)
+CI(xper)
+
+xmed <- togeth %>%
+  filter(!is.na(xmed)) %>%
+  pull(xmed)
+length(xmed)
+CI(xmed)
+
+overall <- togeth %>%
+  filter(!is.na(overall)) %>%
+  pull(overall)
+length(overall)
+CI(overall)
+
+```
+
+Cases by US State
+
+```{r}
+us_states <- map_data("state")
+usa <- map_data("usa")
+
+us_state_case <- left_join(us_states, cases, by = "region")
+
+by_state <- ggplot(data = us_state_case,
+            aes(x = long, y = lat,
+                group = group, fill = log(cases,10))) +
+  geom_polygon(color = "gray90", size = 0.1) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  ggthemes::theme_map() +
+  labs(fill = "Log Cases") +
+  labs(
+    title = "A."
+  ) +
+  theme(legend.position = "bottom")
+fig1_a <- by_state
+  
+```
+
+
+Cases by US county
+
+```{r}
+county_data <- map_data("county")
+county_full <- left_join(county_data, cases, by = c("subregion", "region"))
+wash_ore_cases <- cases %>%
+  filter(region == "washington" | region == "oregon")
+wash_ore_cases_map <- right_join(county_data, wash_ore_cases, by = c("subregion", "region"))
+
+p <- ggplot(data = county_full,
+            mapping = aes(x = long, y = lat, fill = log(cases, 10), 
+                          group = group))
+by_county <- p +
+  geom_polygon(color = "gray90", size = 0.05) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  labs(fill = "Log Cases") +
+  labs(
+    title = "B."
+  ) +
+  ggthemes::theme_map() +
+  theme(legend.position = "bottom")
+fig1_b <- by_county
+
+```
+
+Cases by Northwestern US county
+
+```{r}
+
+wash_ore <- county_full %>%
+  filter(region == "oregon" | region == "washington")
+
+wash_org_cases <- wash_ore %>%
+  filter()
+
+p <- ggplot(data = wash_ore,
+            mapping = aes(x = long, y = lat, fill = log(cases, 10), 
+                          group = group))
+washington_oregon <- p +
+  geom_polygon(color = "gray90", size = 0.05) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  labs(fill = "Log Cases") +
+  labs(
+    title = "E."
+  ) +
+  ggthemes::theme_map() +
+  theme(legend.position = "bottom")
+fig2_e <- washington_oregon
+fig2_e
+
+```
+
+Cases by Northeastern US county. Not looked into further do to lack of data. 
+
+```{r}
+east <- c("new york", "new jersey", "connecticut", "maryland", "massachusetts", "pennsylvania", "rhode island")
+eastern <- county_full %>%
+  filter(region %in% east)
+
+p <- ggplot(data = eastern,
+            mapping = aes(x = long, y = lat, fill = log(cases, 10), 
+                          group = group))
+eastern_out <- p +
+  geom_polygon(color = "gray90", size = 0.05) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  labs(fill = "Log Cases") +
+  labs(
+    title = "D."
+  ) +
+  ggthemes::theme_map() +
+  theme(legend.position = "bottom")
+ eastern_out
+```
+
+
+Vaccination data of US and NW by county
+
+```{r}
+#Group the vaccination data into county level data. 
+
+county_vaccination <- togeth %>%
+  dplyr::select(state, county, mmr, overall, xmed, xper, cases) %>%
+  group_by(state, county) %>%
+  dplyr::summarize(mmr = median(mmr, na.rm = TRUE),
+            overall = median(overall, na.rm = TRUE),
+            xmed = median(xmed, na.rm = TRUE),
+            xper = median(xper, na.rm = TRUE),
+            cases = mean(cases, na.rm = TRUE))
+
+
+county_vacc <- left_join(county_data, county_vaccination, by = c("subregion" = "county", "region" = "state"))
+
+p <- ggplot(data = county_vacc,
+            mapping = aes(x = long, y = lat, fill = mmr, 
+                          group = group))
+county_mmr <- p +
+  geom_polygon(color = "gray90", size = 0.05) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  labs(fill = "MMR vaccination %") +
+  labs(
+    title = "C."
+  ) +
+  ggthemes::theme_map() +
+  theme(legend.position = "bottom")
+fig1_c <- county_mmr
+
+wash_ore <- county_vacc %>%
+  filter(region == "oregon" | region == "washington")
+
+p <- ggplot(data = wash_ore,
+            mapping = aes(x = long, y = lat, fill = mmr, 
+                          group = group))
+wash_ore_mmr <- p +
+  geom_polygon(color = "gray90", size = 0.05) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  labs(fill = "MMR vaccination %") +
+  labs(
+    title = "A."
+  ) +
+  ggthemes::theme_map() +
+  theme(legend.position = "bottom") +
+  geom_polygon(data = wash_ore_cases_map, color = "red", fill = "grey", alpha = 0)
+fig2_a <- wash_ore_mmr
+
+```
+
+```{r}
+p <- ggplot(data = county_vacc,
+            mapping = aes(x = long, y = lat, fill = xper, 
+                          group = group))
+county_xper <- p +
+  geom_polygon(color = "gray90", size = 0.05) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  labs(fill = "Personal Exemption %") +
+  labs(
+    title = "D."
+  ) +
+  ggthemes::theme_map() +
+  theme(legend.position = "bottom")
+fig1_d <- county_xper
+
+p <- ggplot(data = wash_ore,
+            mapping = aes(x = long, y = lat, fill = xper, 
+                          group = group))
+wash_ore_xper <- p +
+  geom_polygon(color = "gray90", size = 0.05) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  labs(fill = "Personal Exemption %") +
+  labs(
+    title = "B."
+  ) +
+  ggthemes::theme_map() +
+  theme(legend.position = "bottom") +
+  geom_polygon(data = wash_ore_cases_map, color = "red", fill = "grey", alpha = 0)
+fig2_b <- wash_ore_xper
+
+```
+
+```{r}
+p <- ggplot(data = county_vacc,
+            mapping = aes(x = long, y = lat, fill = xmed, 
+                          group = group))
+county_xmed <- p +
+  geom_polygon(color = "gray90", size = 0.05) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  labs(fill = "Medical Exemption %") +
+  labs(
+    title = "E."
+  ) +
+  ggthemes::theme_map() +
+  theme(legend.position = "bottom")
+fig1_e <- county_xmed
+
+p <- ggplot(data = wash_ore,
+            mapping = aes(x = long, y = lat, fill = xmed, 
+                          group = group))
+wash_ore_xmed <- p +
+  geom_polygon(color = "gray90", size = 0.05) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  labs(fill = "Medical Exemption %") +
+  labs(
+    title = "C."
+  ) +
+  ggthemes::theme_map() +
+  theme(legend.position = "bottom") +
+  geom_polygon(data = wash_ore_cases_map, color = "red", fill = "grey", alpha = 0)
+fig2_c <- wash_ore_xmed
+```
+
+```{r}
+p <- ggplot(data = county_vacc,
+            mapping = aes(x = long, y = lat, fill = overall, 
+                          group = group))
+county_overall <- p +
+  geom_polygon(color = "gray90", size = 0.05) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  labs(fill = "Overall Vaccination %") +
+  labs(
+    title = "F."
+  ) +
+  ggthemes::theme_map() +
+  theme(legend.position = "bottom")
+fig1_f <- county_overall
+
+p <- ggplot(data = wash_ore,
+            mapping = aes(x = long, y = lat, fill = overall, 
+                          group = group))
+wash_ore_over <- p +
+  geom_polygon(color = "gray90", size = 0.05) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  labs(fill = "Overall vaccination %") +
+  labs(
+    title = "D."
+  ) +
+  ggthemes::theme_map() +
+  theme(legend.position = "bottom") +
+  geom_polygon(data = wash_ore_cases_map, color = "red", fill = "grey", alpha = 0)
+fig2_d <- wash_ore_over
+
+```
+
+Final figures
+```{r}
+figure1 <- cowplot::plot_grid(fig1_a, fig1_b, fig1_c, fig1_d, fig1_e, fig1_f)
+figure2 <- cowplot::plot_grid(fig2_a, fig2_b, fig2_c, fig2_d, fig2_e)
+
+ggsave("figure1.png", plot = figure1, width = 12, height = 10)
+ggsave("figure2.png", plot = figure2, width = 10, height = 8)
+```
+
+Odds ratio of having a case:
+
+Create factors:
+
+```{r}
+northeast <- togeth %>%
+  filter(state == "washington" | state == "oregon") %>%
+  group_by(state, county) %>%
+  dplyr::summarise(mmr = mean(mmr, na.rm = TRUE),
+            overall = mean(overall, na.rm = TRUE),
+            xmed = mean(xmed, na.rm = TRUE),
+            xper = mean(xper, na.rm = TRUE),
+            cases = mean(cases, na.rm = TRUE))
+northeast <- northeast %>%
+  mutate(cases = replace_na(cases, 0))
+
+a <- northeast
+
+quantile(a$mmr, na.rm = TRUE)
+quantile(a$xmed, na.rm = TRUE)
+quantile(a$overall, na.rm = TRUE)
+quantile(a$xper, na.rm = TRUE)
+
+b <- a %>%
+  mutate(
+    cases = ifelse(cases == 0, "no", "yes"),
+    
+    mmr_fac = ifelse(mmr < 89, "71-89%", ifelse(mmr <= 92, "89-92%", ifelse(mmr <= 95, "92-95%", "95-100%"))),
+    
+    xmed_fac = ifelse(xmed < 0.5, "0-0.5%", ifelse(xmed <= 2, "0.5-2.0%", "2-13.7%")),
+    
+    xper_fac = ifelse(xper < 3, "0.75-3%", ifelse(xper < 5.4, "3-5.4%", ifelse(xper < 7.1, "5.4-7.1%", "7.1-29.2%"))),
+    
+    overall_fac = ifelse(overall < 83, "53-83%", ifelse(overall <= 89, "83-89%", ifelse(overall <= 93, "89-93%", "93-98%"))),
+    
+    across(.cols = ends_with("_fac"), as.factor))
+
+northeast_fac <- b
+
+```
+
+Overall Odds Ratio
+
+```{r}
+a <- northeast_fac %>%
+  filter(!is.na(overall_fac))
+
+b <- table(a$overall_fac, a$cases)
+
+oddsratio(b, rev = "rows")
+  
+           
+```
+
+MMR Odds Ratio
+
+```{r}
+a <- northeast_fac %>%
+  filter(!is.na(mmr_fac))
+
+b <- table(a$mmr_fac, a$cases)
+
+oddsratio(b, rev = "rows")
+  
+           
+```
+
+Personal Exemption Odds Ratio
+
+```{r}
+a <- northeast_fac %>%
+  filter(!is.na(xper_fac))
+
+b <- table(a$xper_fac, a$cases)
+
+oddsratio(b)
+
+  
+           
+```
+
+Medical Exemption Odds Ratio
+
+```{r}
+a <- northeast_fac %>%
+  filter(!is.na(xmed_fac))
+
+b <- table(a$xmed_fac, a$cases)
+
+
+oddsratio(b)
+
+riskratio(b)
+  
+           
+```
+
+There is no data on Alaska, Georgia, Hawaii, Indiana, Kentucky, Maryland, Nevada, and New Mexico. 
+The data is majority public, then private, kindergarten and finally charter.
+
+The data is pretty clean now so lets look at the distributions of the single continuous variables.
+
+```{r}
+togeth %>%
+  ggplot(aes(x = overall)) +
+  geom_histogram()
+
+togeth %>%
+  ggplot(aes(x = overall)) +
+  geom_density() +
+  facet_wrap(~ type)
+
+togeth %>%
+  ggplot(aes(x = overall)) +
+  geom_density() +
+  facet_wrap(~ state)
+
+
+togeth %>%
+  ggplot(aes(x = mmr)) +
+  geom_histogram()
+
+togeth %>%
+  ggplot(aes(x = mmr)) +
+  geom_density() +
+  facet_wrap(~ type)
+
+togeth %>%
+  ggplot(aes(x = mmr)) +
+  geom_density() +
+  facet_wrap(~ state)
+
+togeth %>%
+  ggplot(aes(x = xmed)) +
+  geom_histogram()
+
+togeth %>%
+  ggplot(aes(x = xper)) +
+  geom_histogram()
+
+cases %>%
+  ggplot(aes(x = cases)) +
+  geom_histogram()
+  
+```
+
+
+
+
+
+
+
+
